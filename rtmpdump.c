@@ -527,6 +527,11 @@ Download(RTMP * rtmp,		// connected RTMP object
 	    }
 	  size += nRead;
 
+	  if (dStopOffset && rtmp->m_read.timestamp >= (dStopOffset - dSeek))
+	  {
+		  break;
+	  }
+	  
 	  //RTMP_LogPrintf("write %dbytes (%.1f kB)\n", nRead, nRead/1024.0);
 	  if (duration <= 0)	// if duration unknown try to get it from the stream (onMetaData)
 	    duration = RTMP_GetDuration(rtmp);
@@ -621,6 +626,9 @@ Download(RTMP * rtmp,		// connected RTMP object
 		nSkipKeyFrames + 1);
       return RD_FAILED;
     }
+
+  if (dStopOffset && rtmp->m_read.timestamp >= (dStopOffset - dSeek))
+	  return RD_SUCCESS;
 
   if (nRead == -3)
     return RD_SUCCESS;
