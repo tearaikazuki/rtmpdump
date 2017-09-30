@@ -7,3 +7,7 @@ rtmpdump
 rtmpgw
 rtmpsrv
 rtmpsuck
+
+.vs/
+.rej
+.orig
