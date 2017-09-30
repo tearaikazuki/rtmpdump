@@ -1,0 +1,35 @@
+--- rtmpdump.c
++++ rtmpdump.c
+@@ -913,17 +973,19 @@ main(int argc, char **argv)
+     {"start", 1, NULL, 'A'},
+     {"stop", 1, NULL, 'B'},
+     {"token", 1, NULL, 'T'},
++    {"ccommand", 1, NULL, 'K'},
+     {"hashes", 0, NULL, '#'},
+     {"debug", 0, NULL, 'z'},
+     {"quiet", 0, NULL, 'q'},
+     {"verbose", 0, NULL, 'V'},
+     {"jtv", 1, NULL, 'j'},
++    {"weeb", 1, NULL, 'J'},
+     {0, 0, 0, 0}
+   };
+ 
+   while ((opt =
+ 	  getopt_long(argc, argv,
+-		      "hVveqzRr:s:t:i:p:a:b:f:o:u:C:n:c:l:y:Ym:k:d:A:B:T:w:x:W:X:S:#j:",
++                      "hVveqzRr:s:t:i:p:a:b:f:o:u:C:n:c:l:y:Ym:k:d:A:B:T:K:w:x:W:X:S:#j:J:",
+ 		      longopts, NULL)) != -1)
+     {
+       switch (opt)
+@@ -1263,8 +1331,9 @@ main(int argc, char **argv)
+   if (!fullUrl.av_len)
+     {
+       RTMP_SetupStream(&rtmp, protocol, &hostname, port, &sockshost, &playpath,
+-		       &tcUrl, &swfUrl, &pageUrl, &app, &auth, &swfHash, swfSize,
+-		       &flashVer, &subscribepath, &usherToken, dSeek, dStopOffset, bLiveStream, timeout);
++                       &tcUrl, &swfUrl, &pageUrl, &app, &auth, &swfHash, swfSize,
++                       &flashVer, &subscribepath, &usherToken, &WeebToken, &ccomm,
++                       dSeek, dStopOffset, bLiveStream, timeout);
+     }
+   else
+     {
