@@ -9,5 +9,5 @@ rtmpsrv
 rtmpsuck
 
 .vs/
-.rej
-.orig
+*.rej
+*.orig
